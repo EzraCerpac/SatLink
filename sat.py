@@ -109,7 +109,7 @@ class Satellite:
         elif self.snr_threshold is not None:
             return self.snr_threshold
 
-        data = pd.read_csv('models\\Modulation_dB.csv', sep=';')
+        data = pd.read_csv('models/Modulation_dB.csv', sep=';')
         # line = data.loc[(data.Tech == self.tech) & (data.Modulation == self.modulation) & (data.FEC == self.fec)]
         line = data.loc[(data.Modulation == self.modulation) & (data.FEC == self.fec)]
         self.snr_threshold = line['C_over_N'].values[0]
@@ -129,7 +129,7 @@ class Satellite:
         if self.modulation == '' or self.fec == '':
             sys.exit(
                 'You need to create a satellite class with a technology, modulation and FEC to use this function!!!')
-        data = pd.read_csv('models\\Modulation_dB.csv', sep=';')
+        data = pd.read_csv('models/Modulation_dB.csv', sep=';')
         line = data.loc[(data.Modulation == self.modulation) & (data.FEC == self.fec)]
         self.bitrate = self.b_util * line['Inforate efficiency bps_Hz'].values[0]
         return self.bitrate
